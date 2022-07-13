@@ -1,5 +1,3 @@
-import javax.activation.CommandInfo;
-
 /**
  * Essa é a classe principal da aplicacao "World of Zull".
  * "World of Zuul" é um jogo de aventura muito simples, baseado em texto.
@@ -138,7 +136,7 @@ public class Jogo {
             observar();
         }
         else if (palavraDeComando.equals("pegar")) {
-            pegar();
+            pegar(comando);
         }
         
         return querSair;
@@ -158,24 +156,23 @@ public class Jogo {
             //System.out.println("suas saidas sao: " + ambienteAtual.getSaidas());
             return;
         }
+        
+        String itemDesejado = comando.getPalavraDeComando();
 
-        String item = comando.getSegundaPalavra();
+        ItensEstranhos itemPego = null;
 
-        // Tenta sair do ambiente atual
-        ItensEstranhos proximoAmbiente = null;
+        itemPego = ambienteAtual.pegarItem(itemDesejado);
 
-        proximoAmbiente = ambienteAtual.coletarItem();
+        if (itemPego == null){
+            System.out.println("nao ha item");
+        }else{
+            ambienteAtual.consultarItem() = itemPego;
 
-
-        if (proximoAmbiente == null) {
-            System.out.println("Nao ha passagem!");
-        }
-        else {
-            ambienteAtual = proximoAmbiente;
-            
             saidas();
         }
+
     }
+
 
     /**
      * Exibe informações de ajuda.

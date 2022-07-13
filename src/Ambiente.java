@@ -53,13 +53,16 @@ public class Ambiente  {
         public String getDescricaoLonga(){
             String texto = "voce esta " + getDescricao() + "\n" + "saidas: " + getSaidas() + "\n";
 
-            if (temMonstro() || temItem()){
+            
+
+
+            if (temMonstro() && temItem()){
                 texto += "aqui tem um monstro e item " +"\n" + this.monstro.getMonstro();
                 texto += "\n" + this.item.getItem();
-            }else if (temMonstro() || !temItem()){
+            }else if (temMonstro() && !temItem()){
                 texto += "nao tem item aqui, mas, tem um monstro aqui" + "\n";
                 texto += this.monstro.getMonstro();
-            }else if (!temMonstro() || !temItem()){
+            }else if (!temMonstro() && temItem()){
                 texto += "nao tem monstro aqui, mas, tem um item aqui" + "\n";
                 texto += this.item.getItem();
             }else{
@@ -92,11 +95,15 @@ public class Ambiente  {
             }
         }
 
-        public ItensEstranhos coletarItem(){
-            if (temItem()){
-                ItensEstranhos itemPego = this.item;
-                this.item = null;
-                return itemPego;
+        public Object pegarItem(String itemDesejado){
+            if(temItem()){
+                if (itemDesejado == item.getNome()){
+                    ItensEstranhos itemPego = this.item;
+                    this.item = null;
+                    return itemPego;
+                }else{
+                    return null;
+                }
             }else{
                 return null;
             }

@@ -9,6 +9,10 @@ public class ItensEstranhos {
         this.peso = peso;
     } 
 
+    public String getNome(){
+        return this.nome;
+    }
+
     public String getItem(){
         String descricaoItem = "o nome do item e " + this.nome + " e ele sua descricao e " + this.descricao;
         return descricaoItem;
